@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <div class="module--shipping-label-template">
+    <head>
+        <title>Generate Label</title>
+    </head>>
+<body>
+<input type ="file" accept=".csv" id= "picker">
+
+<table id = "table"></table>
+
+<script>
+window.onload = () =>{
+var reader = new FileReader(),
+        picker = document.getElementById("picker"),
+        table = document.getElementById("table");
+
+picker.onchange = () => reader.readAsText(picker.files[0]);
+
+reader.onloadend = () => {
+        let csv = reader.result;
+
+        table.innerHTML = "";
+
+        let rows = csv.split("\r\n");
+
+        table.innerHTML = rows;
+
+        
+        
+    };
+};
+</script>
+</body>
+    </div>
+</html>
