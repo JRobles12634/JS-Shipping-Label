@@ -12,9 +12,9 @@
 
       <script>
         window.onload = () => {
-          var reader = new FileReader(),
-            picker = document.getElementById("picker"),
-            table = document.getElementById("table");
+          var reader = new FileReader();
+          var picker = document.getElementById("picker");
+          var table = document.getElementById("table");
 
           picker.onchange = () => reader.readAsText(picker.files[0]);
 
@@ -25,7 +25,20 @@
 
             let rows = csv.split("\r\n");
 
-            table.innerHTML = rows;
+            // Loop through each row and create a table row
+            for (let i = 0; i < rows.length; i++) {
+              let cells = rows[i].split(",");
+              let tr = document.createElement("tr");
+
+              // Loop through each cell and create a table cell
+              for (let j = 0; j < cells.length; j++) {
+                let td = document.createElement("td");
+                td.innerHTML = cells[j];
+                tr.appendChild(td);
+              }
+
+              table.appendChild(tr);
+            }
           };
         };
       </script>
