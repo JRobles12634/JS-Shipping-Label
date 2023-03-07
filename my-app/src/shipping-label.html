@@ -9,7 +9,11 @@
       <input type="file" accept=".csv" id="picker" />
 
       <table id="table"></table>
-
+      <!-- Load javascript function -->
+      
+      <button id="generate-pdf">Generate shipping label</button>
+      
+ 
       <script>
         window.onload = () => {
           var reader = new FileReader();
@@ -20,6 +24,18 @@
 
           reader.onloadend = () => {
             let csv = reader.result;
+            console.log(csv);
+
+          document.getElementById("generate-pdf").onclick = function(){ 
+            var printWindow = window.open('','', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>');
+            printWindow.document.write('</title>');
+            printWindow.document.write(reader.result);
+            printWindow.document.close();
+            printWindow.print(); 
+    
+            };
+
 
             table.innerHTML = "";
 
@@ -39,9 +55,14 @@
 
               table.appendChild(tr);
             }
+      
           };
-        };
+
+      
+    };
       </script>
+      
+      
     </body>
   </div>
 </html>
